@@ -21,20 +21,24 @@ export const User: React.FC = () => {
     const columns = ["Image", "Nome", 'Perfil', "Status", "Ação"];
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token || state.user) return;
+
         const fetchAndStoreUser = async () => {
-            if (state.user) {
-                setIsLoading(false);
-                return;
-            }
             setIsLoading(true);
-            const fetchedUser = await getUser();
-            dispatch({ type: "LOGIN", payload: fetchedUser });
-            setIsLoading(false);
+            try {
+                const fetchedUser = await getUser();
+                dispatch({ type: 'LOGIN', payload: fetchedUser });
+            } catch (err) {
+                console.error('Erro ao buscar usuário:', err);
+
+            } finally {
+                setIsLoading(false);
+            }
         };
 
         fetchAndStoreUser();
-    }, [state.user, dispatch]);
-
+    }, []);
     const actionBar = (
         <>
             <button
