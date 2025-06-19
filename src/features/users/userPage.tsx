@@ -21,7 +21,7 @@ export const User: React.FC = () => {
     const columns = ["Image", "Nome", 'Perfil', "Status", "Ação"];
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('access_token');
         if (!token || state.user) return;
 
         const fetchAndStoreUser = async () => {
