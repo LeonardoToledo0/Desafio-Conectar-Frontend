@@ -4,7 +4,7 @@ import { Layout } from "../../shared/components/layout";
 import { DataTable } from "../../shared/components/dataTables";
 import { UserRow } from "../../shared/components/userRow";
 import { UserRowSkeleton } from "../../shared/components/skeleton";
-import { getUser } from '../../shared/service/user.service';
+import { getUserById } from '../../shared/service/user.service';
 import { useAuth } from '../../shared/hooks/authContext';
 import { usePageTitle } from '../../shared/hooks/pageTitleContext';
 
@@ -21,13 +21,15 @@ export const User: React.FC = () => {
     const columns = ["Image", "Nome", 'Perfil', "Status", "Ação"];
 
     useEffect(() => {
-        const token = localStorage.getItem('access_token');
-        if (!token || state.user) return;
+        const userId = localStorage.getItem('userId');
+        const access_token = localStorage.getItem('access_token');
+        if (!userId || !access_token || state.user) return;
+        const Id = Number(userId)
 
         const fetchAndStoreUser = async () => {
             setIsLoading(true);
             try {
-                const fetchedUser = await getUser();
+                const fetchedUser = await getUserById(Id);
                 dispatch({ type: 'LOGIN', payload: fetchedUser });
             } catch (err) {
                 console.error('Erro ao buscar usuário:', err);
@@ -38,7 +40,7 @@ export const User: React.FC = () => {
         };
 
         fetchAndStoreUser();
-    }, []);
+    }, [state.user, dispatch]);
     const actionBar = (
         <>
             <button
