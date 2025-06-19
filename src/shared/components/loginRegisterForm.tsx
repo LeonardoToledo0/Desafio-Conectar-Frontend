@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { LoginRegisterProps } from "../types/loginRegister.types";
+import { Link } from "react-router-dom";
 import BG from '../../assets/background.webp'
 
 
@@ -103,9 +104,9 @@ export const LoginRegisterForm: React.FC<LoginRegisterProps> = ({ mode, onSubmit
                     {mode === 'login' && (
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4">
                             Não e registrado?{' '}
-                            <a href="/register" className="text-blue-700 hover:underline dark:text-blue-500">
+                            <Link to="/register" className="text-blue-700 hover:underline dark:text-blue-500">
                                 Criar conta
-                            </a>
+                            </Link>
                         </div>
                     )}
 

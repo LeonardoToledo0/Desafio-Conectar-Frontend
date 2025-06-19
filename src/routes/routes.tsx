@@ -18,7 +18,7 @@ export const AppRoutes: React.FC = () => {
 
                 <Route path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/google/negado" element={<AccessDenied />} />
+                <Route path="/error" element={<AccessDenied />} />
 
 
 
@@ -28,7 +28,7 @@ export const AppRoutes: React.FC = () => {
                     <Route path="/perfil/update/:userId" element={<UpdateUser />} />
                     <Route path="/user" element={<Admin />} />
                     <Route path="/perfil/update/Manager/:userId" element={<UpdateUserManager />} />
-                    < Route path="/users/inactives" element={<UserInactives />} />
+                    <Route path="/users/inactives" element={<UserInactives />} />
                 </Route>
             </Routes>
         </Router>
