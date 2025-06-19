@@ -7,9 +7,11 @@ import { UserRowSkeleton } from "../../shared/components/skeleton";
 import { getUserById } from '../../shared/service/user.service';
 import { useAuth } from '../../shared/hooks/authContext';
 import { usePageTitle } from '../../shared/hooks/pageTitleContext';
+import { useLocation } from "react-router-dom";
 
 
 export const User: React.FC = () => {
+    const location = useLocation();
     const { setTitle } = usePageTitle()
     const { state, dispatch } = useAuth();
     useEffect(() => {
@@ -40,7 +42,7 @@ export const User: React.FC = () => {
         };
 
         fetchAndStoreUser();
-    }, [dispatch]);
+    }, [dispatch, location]);
     const actionBar = (
         <>
             <button
