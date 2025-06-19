@@ -40,7 +40,7 @@ export const User: React.FC = () => {
         };
 
         fetchAndStoreUser();
-    }, [state.user, dispatch]);
+    }, [dispatch]);
     const actionBar = (
         <>
             <button
